@@ -12,8 +12,8 @@ config :sling,
 # Configures the endpoint
 config :sling, Sling.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "q6gXk+Kd8xGqAkSQ+FwW7aMOi4V2ZliyWk9d5JpwKX4cK7ipUSHGONv/NVAUNQ4d",
-  render_errors: [view: Sling.ErrorView, accepts: ~w(json)],
+  secret_key_base: "iHJaWh4UIvDbS7KJVqF5e0AGzpehhwc6wmGCtJ5ey69PGSojOBqgO8mA/Av8BQ6c",
+  render_errors: [view: Sling.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Sling.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
