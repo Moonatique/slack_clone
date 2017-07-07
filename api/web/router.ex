@@ -11,6 +11,8 @@ defmodule Sling.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", Sling do
@@ -20,7 +22,12 @@ defmodule Sling.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Sling do
-  #   pipe_through :api
-  # end
+  scope "/api", Sling do
+    pipe_through :api
+
+    post "/sessions", SessionController, :create
+    delete "/sessions", SessionController, :delete
+    post "/sessions/refresh", SessionController, :refresh
+    resources "/users", UserController, only: [:create]
+  end
 end
